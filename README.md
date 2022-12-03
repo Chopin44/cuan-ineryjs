@@ -1,75 +1,113 @@
-# ineryjs
-Javascript API for integration with Inery-based blockchains using Inery RPC API.  
-Documentation can be found in docs folder.  
+# THIS REPO CREATED TO COMPLETE TASK 4 FROM [TESTNET INERY](https://testnet.inery.io/dashboard/)
 
-## Import
+## TUTORIAL (Indonesia)
 
-### Browser
+### 1. Clone repository git dari official
 
-Run command `npm run build-web`. Then copy folder dist-web in your project folder. Import scripts in your HTML file and use it. See [Module in browser](tutorial-module-in-browser.html) tutorial for more.
-
-### ES Modules
-
-```js
-import { Api, JsonRpc, RpcError, JsSignatureProvider } from 'ineryjs';
+```
+https://github.com/inery-blockchain/ineryjs.git
 ```
 
-### CommonJS
+### atau
 
-```js
-const { Api, JsonRpc, RpcError, JsSignatureProvider } = require('ineryjs');
+```
+https://github.com/Chopin44/cuan-ineryjs.git
 ```
 
-## Basic Usage
+### 2. Pastikan directory anda sudah pada jalur yang benar
 
-### Signature Provider
-
-The Signature Provider holds private keys and is responsible for signing transactions.
-
-**Using the JsSignatureProvider in the browser is not secure and should only be used for development purposes. Use a secure vault outside of the context of the webpage to ensure security when signing transactions in production**
-
-```js
-const user1PrivateKey = "5JRchd5OZaHl9DAuVPEMo0gEx5nYiGc0Tn2aB75ef96FjuOiq"; // user1 private key
-const signatureProvider = new JsSignatureProvider([user1PrivateKey]);
+```
+cd ineryjs
 ```
 
-### JsonRpc
+### or
 
-Open a connection to JsonRpc.
-```js
-const url="https://www.myurl.com";
-const rpc = new JsonRpc(url);
+```
+cd cuan-ineryjs
 ```
 
-### API
+### 3. Menginstall semua direktory yang dibutuhkan
 
-You may exclude these when running in a browser since most modern browsers now natively support these. If your browser does not support these (https://caniuse.com/#feat=textencoder), then you can import them as a dependency through the following deprecated npm package: https://www.npmjs.com/package/text-encoding
-```js
-const api = new Api({ rpc, signatureProvider });
+```
+npm i
 ```
 
-### Sending a transaction
+### 4. Buat file .env secara otomatis dan copy isi .env-sample dengan :
 
-`transact()` is used to sign and push transactions onto the blockchain with an optional configuration object parameter. Given no configuration options, transactions are expected to be unpacked with TAPOS fields (`expiration`, `ref_block_num`, `ref_block_prefix`) and will automatically be broadcast onto the chain.
-
-```js
-(async () => {
-  const result = await api.transact({
-    actions: [{
-      account: 'inery.token',
-      name: 'transfer',
-      authorization: [{
-        actor: 'user1',
-        permission: 'active',
-      }],
-      data: {
-        from: 'user1',
-        to: 'user2',
-        quantity: '0.0001 INR',
-        memo: ''
-      }
-    }]
-  });
-  console.log(result);
-})();
 ```
+cp .env-sample .env
+```
+
+### 5. Setelahnya file .env akan terbuat dan masukkan sesuai yang diminta seperti :
+
+- your name account
+- your private key
+- your node url (url ini sama dengan public ip yang vps kalian gunakan)
+  contoh : http://13.212.29.212:8888/
+
+### 6. Buatlah sebuah code
+
+Code ini dibuat dengan javascript dengan contoh seperti ini :
+
+### [Example](https://github.com/Chopin44/cuan-ineryjs/blob/master/example/json-rpc.mjs)
+
+### 7. Setelah code dibuat bisa langsung dijalankan
+
+```
+node <code.js>
+```
+
+Jika masih dalam direktori [example](https://github.com/Chopin44/cuan-ineryjs/blob/master/example/json-rpc.mjs) anda bisa langsung
+
+```
+npm run rpc-example
+```
+
+## TUTORIAL(English)
+
+### 1. Clone repository git from official inery
+
+```
+https://github.com/inery-blockchain/ineryjs.git
+```
+
+### or
+
+```
+https://github.com/Chopin44/cuan-ineryjs.git
+```
+
+### 2. Make sure your directories is on the right path
+
+```
+cd ineryjs
+```
+
+### or
+
+```
+cd cuan-ineryjs
+```
+
+### 3. Install all dependencies
+
+```
+npm i
+```
+
+### 4. Move and Copy file .env-sample
+
+```
+cp .env-sample .env
+```
+
+### 5. After that the .env file created then you can insert
+
+- your name account
+- your private key
+- your node url (same to your public ip vps)
+  example : http://13.212.29.212:8888/
+
+### 6. Create the code
+
+Code example is, you can click here [example](https://github.com/Chopin44/cuan-ineryjs/blob/master/example/json-rpc.mjs)
